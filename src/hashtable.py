@@ -55,24 +55,40 @@ class HashTable:
         '''
         # TODO: 
         # Hash the key and it will return an index
-        # index = self._hash_mod(key)
+        index = self._hash_mod(key)
 
         # if the index doesn't exsist
+        if self.storage[index] == None:
             # wrap the key,value in the "linked Pair" and assign it to that key
+            self.storage[index] = LinkedPair(key, value)
         # otherwise - there might be some collision occuring because the index already exsists
+        else:
             # if the current key matches the key passed in
+            if self.storage[index].key == key:
                 # replace the current value
+                self.storage[index].value = value
             # otherwise deal with the next slot
+            else:
                 # store next value in variable
+                next_item = self.storage[index].next
                 # while next slot exsists
+                while next_item is not None:
                     # if the next slot's key matches the passed in key
+                    if next_item.key == key:
                         # replace the value of the slot
+                        next_item.value = value
                     # elif there is no next in the chain
+                    elif next_item == None:
                         # wrap the key,value in the "linked pair" and assign it to that key
+                        next_item = LinkedPair(key,value)                  
                     # otherwise
+                    else:
                         # rest the next variable
+                        next_item = next_item.next
         # increate the size using the resize method below
+        # self.resize()
         # dont forget to return
+        return
     def remove(self, key):
         '''
         Remove the value stored with the given key.
@@ -83,20 +99,33 @@ class HashTable:
         '''
         # TODO:
         # hash the key and use as index
+        index = self._hash_mod(key)
         # if the key exsists
+        if self.storage[index] is not None:
             # check if the keys match
+            if self.storage[index].key == key:
                 # set the value to None
+                self.storage[index] = None
             # otherwise handle the collision
+            else:
                 # store next value in variable
+                next_item = self.storage[index].next
                 # while next slot exsists
+                while next_item is not None:
                     # if the next slot's key matches the passed in key
+                    if next_item.key == key:
                         # replace with None
+                        next_item = None
                     # otherwise
+                    else:
                         # rest the next variable
+                        next_item = next_item.next
         # otherwise
+        else:
             # print the key is not found
+            print(f"This key {key} is not found")
         # dont forget to return
-        pass
+        return
 
 
     def retrieve(self, key):
@@ -109,22 +138,33 @@ class HashTable:
         '''
         #TODO:
         # hash the key and use as index
+        index = self._hash_mod(key)
         # if the key exsists
+        if self.storage[index] is not None:
             # check if the keys match
+            if self.storage[index].key == key:
                 # return the value
+                return self.storage[index].value
             # otherwise handle the collision
+            else:
                 # store next value in variable
+                next_item = self.storage[index].next
                 # while next slot exsists
+                while next_item:
                     # if the next slot's key matches the passed in key
+                    if next_item.key == key:
                         # return the value
+                        return next_item.value
                     # otherwise:
+                    else:
                         # rest the next variable
+                        next_item = next_item.next
         # otherwise
+        else:
             # return None
+            return None
         # dont forget to return
-
-
-        pass
+        return
 
 
     def resize(self):
