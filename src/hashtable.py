@@ -9,12 +9,12 @@ class LinkedPair:
 
 class HashTable:
     '''
-    A hash table that with `capacity` buckets
+    A hash table with `capacity` buckets
     that accepts string keys
     '''
     def __init__(self, capacity):
         self.capacity = capacity  # Number of buckets in the hash table
-        self.storage = [None] * capacity
+        self.storage = [None] * capacity # Allocating memory
 
 
     def _hash(self, key):
@@ -49,12 +49,30 @@ class HashTable:
 
         Hash collisions should be handled with Linked List Chaining.
 
+        reference: https://runestone.academy/runestone/books/published/pythonds/SortSearch/Hashing.html
+
         Fill this in.
         '''
-        pass
+        # TODO: 
+        # Hash the key and it will return an index
+        index = self._hash_mod(key)
 
-
-
+        # if the index doesn't exsist
+            # wrap the key,value in the "linked Pair" and assign it to that key
+        # otherwise - there might be some collision occuring because the index already exsists
+            # if the current key matches the key passed in
+                # replace the current value
+            # otherwise deal with the next slot
+                # store next value in variable
+                # while next slot exsists
+                    # if the next slot's key matches the passed in key
+                        # replace the value of the slot
+                    # elif there is no next in the chain
+                        # wrap the key,value in the "linked pair" and assign it to that key
+                    # otherwise
+                        # rest the next variable
+        # increate the size using the resize method below
+        # dont forget to return
     def remove(self, key):
         '''
         Remove the value stored with the given key.
@@ -63,6 +81,21 @@ class HashTable:
 
         Fill this in.
         '''
+        # TODO:
+        # hash the key and use as index
+        # if the key exsists
+            # check if the keys match
+                # set the value to None
+            # otherwise handle the collision
+                # store next value in variable
+                # while next slot exsists
+                    # if the next slot's key matches the passed in key
+                        # replace with None
+                    # otherwise
+                        # rest the next variable
+        # otherwise
+            # print the key is not found
+        # dont forget to return
         pass
 
 
@@ -74,6 +107,23 @@ class HashTable:
 
         Fill this in.
         '''
+        #TODO:
+        # hash the key and use as index
+        # if the key exsists
+            # check if the keys match
+                # return the value
+            # otherwise handle the collision
+                # store next value in variable
+                # while next slot exsists
+                    # if the next slot's key matches the passed in key
+                        # return the value
+                    # otherwise:
+                        # rest the next variable
+        # otherwise
+            # return None
+        # dont forget to return
+
+
         pass
 
 
@@ -82,8 +132,17 @@ class HashTable:
         Doubles the capacity of the hash table and
         rehash all key/value pairs.
 
+        Do this first because everything needs to use it
         Fill this in.
         '''
+        #TODO:
+        # muliply capacity by 2 and set it to the new value
+        # Allocate storage with the new size
+        # Loop through the list
+            # rehash all the key/value pairs
+            # add each to the newly created array.
+        # reset storage to the new list
+
         pass
 
 
