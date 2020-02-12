@@ -55,7 +55,7 @@ class HashTable:
         '''
         # TODO: 
         # Hash the key and it will return an index
-        index = self._hash_mod(key)
+        # index = self._hash_mod(key)
 
         # if the index doesn't exsist
             # wrap the key,value in the "linked Pair" and assign it to that key
@@ -136,14 +136,19 @@ class HashTable:
         Fill this in.
         '''
         #TODO:
+        old_storage = self.storage
         # muliply capacity by 2 and set it to the new value
+        self.capacity *= 2
         # Allocate storage with the new size
-        # Loop through the list
-            # rehash all the key/value pairs
-            # add each to the newly created array.
+        new_storage = [None] * self.capacity
         # reset storage to the new list
+        self.storage = new_storage
+        # Loop through the list
+        for item in old_storage:
+            # rehash all the key/value pairs using self.insert
+            # add each to the newly created array.
+            self.insert(item[0],item[1])
 
-        pass
 
 
 
